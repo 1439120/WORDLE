@@ -2,7 +2,7 @@
 .Board {
     height: 426px;
     width: 356px;
-    background-color: green;
+    /* background-color: green; */
     margin: 0 auto;
     margin-top: 5px;
     display: flex;
@@ -21,3 +21,20 @@
     align-items: center;
 }
 
+.Correct{
+    background-color: green;
+    color: white;
+    border-color: white
+}
+
+.Present{
+    background-color: yellow;
+    color: white;
+    border-color: white;
+}
+
+.Absent{
+    background-color: gray;
+    color: white;
+    background-color: white;
+}

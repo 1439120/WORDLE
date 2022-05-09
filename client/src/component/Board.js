@@ -1,15 +1,33 @@
 import './../css/Board.css'
+import React, {useState, useEffect} from 'react';
 
 
 function Board(){
 
     let rows = initializeBoard(5,6)
+    const [index, setIndex] = useState(0)
+
+    function handler(e){
+        if(index < 5 * 6){
+            setIndex(index + 1)
+            document.getElementById(index.toString()).innerHTML = e.code[3]
+        }
+        
+    }
+
+    useEffect((e) => {
+        window.addEventListener("keyup", handler)
+
+        return () => {
+            window.removeEventListener("keyup", handler)
+        }
+    })
 
     return(
         <div className="Board">
-               {rows.map((item) => {
+               {rows.map((item, i) => {
                    return (
-                       <span className = "Tile">{item}</span>
+                       <span className = "Tile" id={i}>{item}</span>
                    )
                })}
         </div>
@@ -19,10 +37,9 @@ function Board(){
 function initializeBoard(len, height){
     let a = []
     for(let i = 0; i < len*height; i++){
-        a.push("P")
+        a.push("")
     }
     return a;
 }
-
 
 export default Board
