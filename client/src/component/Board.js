@@ -8,7 +8,7 @@ function Board(){
     const [index, setIndex] = useState(0)
 
     function handler(e){
-        if(index < 5 * 6){
+        if(index < 5 * 6 && (e.code >= "KeyA" && e.code <= "KeyZ")){
             setIndex(index + 1)
             document.getElementById(index.toString()).innerHTML = e.code[3]
         }
