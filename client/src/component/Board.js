@@ -23,6 +23,7 @@ function Board(){
         console.log(e)
         if(e.key === "Enter" ){
             window.addEventListener("keyup", handler)
+            
         }
     }
 
