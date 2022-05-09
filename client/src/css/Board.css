@@ -21,20 +21,19 @@
     align-items: center;
 }
 
-.Correct{
+#Correct{
     background-color: green;
     color: white;
     border-color: white
 }
 
-.Present{
-    background-color: yellow;
+#Present{
+    background-color: rgb(134, 134, 7);
     color: white;
     border-color: white;
 }
-
-.Absent{
-    background-color: gray;
+#Absent{
+    background-color: rgb(102, 101, 101);;
     color: white;
-    background-color: white;
+    border-color: white
 }
