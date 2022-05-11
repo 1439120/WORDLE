@@ -4,6 +4,7 @@ let app = express()
 
 app.get("/api", (req, res) => {
     res.json({"users" : ["userone", "usertwo", "userthree", 'userfour'] })
+    //res.json({"me": [ "words"]})
 })
 
 app.listen(5000, () => {
