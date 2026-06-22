@@ -9,7 +9,7 @@ function Board(){
         <div className="Board">
                {rows.map((item, i) => {
                    return (
-                       <span className = "Tile" id={i}>{item}</span>
+                       <span className = "Tile" id={i} key={i}>{item}</span>
                    )
                })}
         </div>

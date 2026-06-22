@@ -17,6 +17,7 @@ function Tile(){
         if(index < 5 * 6 && (e.code >= "KeyA" && e.code <= "KeyZ")){
             setIndex(index + 1)
             document.getElementById(index.toString()).innerHTML = e.code[3]
+            console.log("Whats happening here?")
 
             // Check if the alphabet is correct
             if(word_[index % 5] === e.code[3]){

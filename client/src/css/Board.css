@@ -1,24 +1,166 @@
-
+/* Board.css */
 .Board {
-    height: 426px;
-    width: 356px;
-    /* background-color: green; */
-    margin: 0 auto;
-    margin-top: 5px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    max-width: 360px;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(26, 26, 46, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    position: relative;
+    backdrop-filter: blur(10px);
 }
 
-.Tile{
-    border: 3px solid gray;
-    width: 60px;
-    height: 60px;
-    margin: 2.5px;
-    color: black;
-    font-weight: bold;
+.Tile {
+    aspect-ratio: 1/1;
+    width: 100%;
+    max-width: 62px;
+    border: 2px solid #3a3a4a;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    text-transform: uppercase;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    user-select: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Filled state */
+.Tile.filled {
+    border-color: #5656a0;
+    animation: pop 0.2s ease;
+    box-shadow: 0 0 15px rgba(86, 86, 160, 0.2);
+}
+
+@keyframes pop {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Empty tile hover */
+.Tile:not(.filled):not(.correct):not(.present):not(.absent):hover {
+    border-color: #6a6a7a;
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Flip animation */
+@keyframes flip {
+    0% {
+        transform: rotateX(0deg) scale(1);
+    }
+    50% {
+        transform: rotateX(90deg) scale(0.9);
+    }
+    100% {
+        transform: rotateX(0deg) scale(1);
+    }
+}
+
+/* Shake animation for invalid words */
+.Tile.shake {
+    animation: shake 0.5s ease;
+    border-color: #e94560 !important;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+    20%, 40%, 60%, 80% { transform: translateX(8px); }
+}
+
+/* Message overlay */
+.Message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    z-index: 10;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.3s ease;
+    pointer-events: none;
+    text-align: center;
+    min-width: 200px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .Board {
+        gap: 5px;
+        padding: 12px;
+        max-width: 300px;
+    }
+    
+    .Tile {
+        font-size: 1.5rem;
+        max-width: 50px;
+        border-width: 2px;
+    }
+    
+    .Message {
+        font-size: 1rem;
+        padding: 12px 20px;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 380px) {
+    .Board {
+        gap: 4px;
+        padding: 8px;
+        max-width: 250px;
+    }
+    
+    .Tile {
+        font-size: 1.2rem;
+        max-width: 42px;
+        border-width: 1.5px;
+    }
+}
+
+/* Optional: Add a subtle glow to the current row */
+.Tile.filled[data-row="${Math.floor(currentIndex / rowLength)}"]:not(.correct):not(.present):not(.absent) {
+    border-color: #6a6aaa;
+}
+
+/* Keyboard hint dots (optional) */
+.Tile:empty::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
 }
 
 #Correct{

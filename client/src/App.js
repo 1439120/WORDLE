@@ -1,4 +1,3 @@
-import React, {useEffect, useState} from 'react';
 import Header from './component/Header'
 import Board from './component/Board'
 import './App.css'
