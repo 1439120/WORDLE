@@ -1,4 +1,36 @@
-body{
-    margin: 0px;
-    padding: 0px;
+/* App.css */
+.App {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.App-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.Game-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .App-layout {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .Game-container {
+        width: 100%;
+    }
 }

@@ -1,0 +1,294 @@
+/* Dashboard.css */
+.Dashboard {
+    background: rgba(26, 26, 46, 0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 20px 20px 20px 0;
+    min-width: 250px;
+    max-width: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+    transition: all 0.3s ease;
+    color: #ffffff;
+}
+
+.Dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.Dashboard-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #f5a623, #e94560);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.Reset-stats {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #888;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    -webkit-text-fill-color: #888;
+}
+
+.Reset-stats:hover {
+    background: rgba(233, 69, 96, 0.2);
+    border-color: #e94560;
+    color: #e94560;
+    -webkit-text-fill-color: #e94560;
+    transform: scale(1.05);
+}
+
+.Stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.Stat-item {
+    text-align: center;
+    padding: 12px 5px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.Stat-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+}
+
+.Stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    font-family: 'Arial Black', sans-serif;
+}
+
+.Stat-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    font-weight: 600;
+}
+
+.Guess-distribution {
+    margin-bottom: 20px;
+}
+
+.Guess-distribution h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.Distribution-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.Distribution-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.Guess-number {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #888;
+    min-width: 20px;
+    text-align: right;
+}
+
+.Bar-container {
+    flex: 1;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.Bar {
+    height: 100%;
+    border-radius: 6px;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 4px;
+    min-width: 10px;
+    position: relative;
+}
+
+.Bar-count {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    padding: 0 6px;
+    opacity: 0.9;
+}
+
+/* Bar animation on load */
+@keyframes barGrow {
+    from { width: 0; }
+    to { width: var(--width); }
+}
+
+.Bar {
+    animation: barGrow 1s ease;
+}
+
+.Recent-game {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Recent-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    font-weight: 600;
+}
+
+.Recent-value {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-weight: 500;
+}
+
+/* Hover effects */
+.Dashboard:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .Dashboard {
+        min-width: unset;
+        max-width: 100%;
+        margin: 10px 10px 10px 10px;
+        position: static;
+        padding: 16px;
+    }
+
+    .Stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .Stat-value {
+        font-size: 1.4rem;
+    }
+
+    .Dashboard-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .Bar-container {
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Dashboard {
+        padding: 12px;
+        margin: 8px;
+    }
+
+    .Stats-grid {
+        gap: 4px;
+    }
+
+    .Stat-item {
+        padding: 8px 4px;
+    }
+
+    .Stat-value {
+        font-size: 1.2rem;
+    }
+
+    .Stat-label {
+        font-size: 0.55rem;
+    }
+
+    .Guess-distribution h3 {
+        font-size: 0.8rem;
+    }
+
+    .Bar-container {
+        height: 18px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: light) {
+    .Dashboard {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .Stat-item {
+        background: rgba(0, 0, 0, 0.03);
+    }
+
+    .Stat-value {
+        color: #1a1a2e;
+    }
+
+    .Stat-label {
+        color: #666;
+    }
+
+    .Bar-container {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    .Recent-game {
+        background: rgba(0, 0, 0, 0.03);
+    }
+
+    .Recent-value {
+        color: #555;
+    }
+
+    .Guess-distribution h3 {
+        color: #666;
+    }
+
+    .Guess-number {
+        color: #666;
+    }
+}
