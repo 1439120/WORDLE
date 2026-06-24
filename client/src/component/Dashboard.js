@@ -1,74 +1,25 @@
 // Dashboard.jsx
-import { useState, useEffect } from 'react';
 import './../css/Dashboard.css';
 
-function Dashboard({ gameStats, currentStreak, bestStreak, totalGames }) {
-    const [stats, setStats] = useState({
-        gamesPlayed: 0,
-        winRate: 0,
-        currentStreak: 0,
-        bestStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0],
-        lastGame: null
-    });
-
-    // Load stats from localStorage on mount
-    useEffect(() => {
-        const savedStats = localStorage.getItem('wordleStats');
-        if (savedStats) {
-            setStats(JSON.parse(savedStats));
-        }
-    }, []);
-
-    // Update stats when game ends
-    useEffect(() => {
-        if (gameStats) {
-            updateStats(gameStats);
-        }
-    }, [gameStats]);
-
-    const updateStats = (newGameStats) => {
-        const updatedStats = { ...stats };
-        
-        // Update games played
-        updatedStats.gamesPlayed += 1;
-        
-        // Update win/loss
-        if (newGameStats.won) {
-            updatedStats.currentStreak += 1;
-            updatedStats.bestStreak = Math.max(updatedStats.bestStreak, updatedStats.currentStreak);
-            updatedStats.guessDistribution[newGameStats.guesses - 1] += 1;
-        } else {
-            updatedStats.currentStreak = 0;
-        }
-        
-        // Update win rate
-        const wins = updatedStats.guessDistribution.reduce((a, b) => a + b, 0);
-        updatedStats.winRate = Math.round((wins / updatedStats.gamesPlayed) * 100);
-        
-        updatedStats.lastGame = new Date().toLocaleDateString();
-        
-        setStats(updatedStats);
-        localStorage.setItem('wordleStats', JSON.stringify(updatedStats));
-    };
+function Dashboard({ stats  }) {
 
     return (
         <div className="Dashboard">
             <div className="Dashboard-header">
                 <h2>📊 Statistics</h2>
                 <button className="Reset-stats" onClick={() => {
-                    if (window.confirm('Reset all statistics?')) {
-                        const resetStats = {
-                            gamesPlayed: 0,
-                            winRate: 0,
-                            currentStreak: 0,
-                            bestStreak: 0,
-                            guessDistribution: [0, 0, 0, 0, 0, 0],
-                            lastGame: null
-                        };
-                        setStats(resetStats);
-                        localStorage.setItem('wordleStats', JSON.stringify(resetStats));
-                    }
+                    // if (window.confirm('Reset all statistics?')) {
+                    //     const resetStats = {
+                    //         gamesPlayed: 0,
+                    //         winRate: 0,
+                    //         currentStreak: 0,
+                    //         bestStreak: 0,
+                    //         guessDistribution: [0, 0, 0, 0, 0, 0],
+                    //         lastGame: null
+                    //     };
+                    //     setStats(resetStats);
+                    //     localStorage.setItem('wordleStats', JSON.stringify(resetStats));
+                    // }
                 }}>
                     ↻ Reset
                 </button>

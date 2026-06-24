@@ -71,6 +71,10 @@ function Tile(){
             console.log("Failed to fetch my data")
         })
     }, [])
+    return {
+        gameOver, 
+        won
+    }
 }
 
 export default Tile
